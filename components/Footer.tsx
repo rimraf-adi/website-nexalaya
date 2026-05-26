@@ -15,10 +15,7 @@ export default function Footer() {
 
         {/* Right — Links */}
         <div className={styles.links}>
-          <a href="#features" className={styles.link}>Features</a>
-          <a href="#how-it-works" className={styles.link}>How it works</a>
-          <a href="#notify" className={styles.link}>Early Access</a>
-          <a href="mailto:hello@nexalaya.com" className={styles.link}>Contact</a>
+          <a href="mailto:hello@nexalaya.com" className={styles.link}>Contact Us</a>
         </div>
       </div>
     </footer>

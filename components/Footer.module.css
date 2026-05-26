@@ -42,7 +42,7 @@
 .tagline {
   font-size: 0.875rem;
   color: var(--gray-400);
-  font-style: italic;
+  font-style: normal;
 }
 
 .copy {

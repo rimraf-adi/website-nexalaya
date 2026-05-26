@@ -2,7 +2,7 @@ import styles from "./Impact.module.css";
 
 const stats = [
   {
-    before: "20–30 min",
+    before: "10 min",
     after: "10 sec",
     label: "per class attendance",
   },
@@ -24,10 +24,26 @@ const stats = [
 ];
 
 const naac = [
-  { code: "2", label: "Teaching-Learning & Evaluation" },
-  { code: "5", label: "Student Support & Progression" },
-  { code: "6", label: "Governance & Leadership" },
-  { code: "7", label: "Institutional Values & Practices" },
+  {
+    code: "2",
+    label: "Teaching-Learning & Evaluation",
+    desc: "Deliver tamper-proof, location-verified attendance logs that mathematically validate your continuous internal assessments and eliminate proxy fraud.",
+  },
+  {
+    code: "5",
+    label: "Student Support & Progression",
+    desc: "Deploy an automated early-warning system that instantly alerts faculty mentors when at-risk students miss consecutive lectures.",
+  },
+  {
+    code: "6",
+    label: "E-Governance & Leadership",
+    desc: "Arm your IQAC team with one-click, flawless E-Governance data exports, saving administration weeks of manual calculation.",
+  },
+  {
+    code: "7",
+    label: "Institutional Values & Practices",
+    desc: "Slash your institutional carbon footprint by going 100% paperless, and claim 'Decentralized IoT Monitoring' as your official NAAC Best Practice.",
+  },
 ];
 
 export default function Impact() {
@@ -40,7 +56,7 @@ export default function Impact() {
           <span className={styles.eyebrow}>The Impact</span>
           <h2 className={styles.title}>
             Why 10 seconds<br />
-            <span className={styles.accent}>changes everything.</span>
+            <span className={styles.accent}>changes everything</span>
           </h2>
           <p className={styles.subtitle}>
             The numbers your administration will present to management —
@@ -73,7 +89,7 @@ export default function Impact() {
           <div className={styles.naacHeader}>
             <span className={styles.naacBadge}>NAAC 2.0</span>
             <h3 className={styles.naacTitle}>
-              Built to fulfil NAAC criteria — out of the box.
+              Built to fulfil NAAC criteria — out of the box
             </h3>
             <p className={styles.naacSub}>
               nexalaya automatically generates the attendance data, reports, and
@@ -85,6 +101,7 @@ export default function Impact() {
               <div key={n.code} className={styles.naacItem}>
                 <span className={styles.naacCode}>Criterion {n.code}</span>
                 <span className={styles.naacItemLabel}>{n.label}</span>
+                <p className={styles.naacItemDesc}>{n.desc}</p>
               </div>
             ))}
           </div>

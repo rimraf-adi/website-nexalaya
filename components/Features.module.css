@@ -12,16 +12,16 @@
 
 .eyebrow {
   display: inline-block;
-  font-size: 1.75rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: #2d3748;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-600);
   margin-bottom: 1rem;
 }
 
-.eyebrowWhy {
-  text-transform: uppercase;
-  color: var(--blue-600);
+.eyebrowBrand {
+  text-transform: none;
 }
 
 .title {
@@ -44,6 +44,14 @@
   font-size: 1rem;
   color: #2D3748;
   line-height: 1.75;
+}
+
+.subtitleHighlight {
+  font-weight: 700;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .brandN {

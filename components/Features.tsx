@@ -5,13 +5,13 @@ const features = [
     icon: "⚡",
     title: "10-Second Attendance",
     description:
-      "What takes 20–30 minutes manually now takes 10 seconds. Professor taps once — every student in the classroom is marked in real time.",
+      "What takes 10 minutes manually now takes 10 seconds. Professor taps once — every student in the classroom is marked in real time.",
   },
   {
     icon: "🌐",
     title: "IoT Local Network",
     description:
-      "A wireless module plugged into the classroom creates a secure local network. Face scan activates only within classroom range — no internet needed.",
+      "A wireless module plugged into the classroom creates a secure local network. Face scan activates only within classroom range.",
   },
   {
     icon: "🧠",
@@ -46,16 +46,18 @@ export default function Features() {
         {/* Header */}
         <div className={styles.header}>
           <span className={styles.eyebrow}>
-            <span className={styles.eyebrowWhy}>Why </span>
-            <span className={styles.brandN}>n</span>exalaya
+            Why{" "}
+            <span className={styles.eyebrowBrand}>nexalaya</span>
           </span>
           <h2 className={styles.title}>
-            One system.<br />
-            <span className={styles.accent}>Every advantage.</span>
+            One system<br />
+            <span className={styles.accent}>Every advantage</span>
           </h2>
           <p className={styles.subtitle}>
-            Designed around how Indian colleges actually work — not a generic SaaS
-            bolted onto your campus, but a purpose-built solution for your exact pain points.
+            Designed around how Indian colleges actually work —{" "}
+            <span className={styles.subtitleHighlight}>not a generic SaaS</span>{" "}
+            bolted onto your campus, but a{" "}
+            <span className={styles.subtitleHighlight}>purpose-built solution for your exact pain points</span>.
           </p>
         </div>
 

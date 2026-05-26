@@ -3,14 +3,17 @@
 import { useEffect, useState } from "react";
 import styles from "./Hero.module.css";
 
-const LINE_1 = ["Attendance", "in", "10", "Seconds."];
-const LINE_2 = ["Zero", "Proxies.", "Full", "Control."];
+const LINE_1 = ["Attendance", "in", "10", "Seconds"];
+const LINE_2 = ["Automated.", "Full", "Control."];
 
 // Words that get the blue gradient
-const GRADIENT_WORDS = new Set(["Zero", "Proxies.", "Full", "Control."]);
+const GRADIENT_WORDS = new Set(["Automated.", "Full", "Control."]);
+
+// Words that get the special "10" highlight glow
+const HIGHLIGHT_WORDS = new Set(["10"]);
 
 const STAGGER_MS = 42;
-const INITIAL_DELAY_MS = 150;
+const INITIAL_DELAY_MS = 300; // slightly longer so SSR paint settles first
 
 const LINE1_TEXT = LINE_1.join(" ");
 const LINE2_TEXT = LINE_2.join(" ");
@@ -32,21 +35,30 @@ export default function Hero() {
   const renderWord = (
     word: string,
     globalOffset: number,
-    isGradient: boolean
+    isGradient: boolean,
+    isHighlight: boolean = false
   ) =>
     word.split("").map((char, i) => {
       const delay = INITIAL_DELAY_MS + (globalOffset + i) * STAGGER_MS;
+      // Only apply animation classes after the component has mounted AND started,
+      // preventing any SSR/hydration flash where chars momentarily appear.
+      const isActive = mounted && started;
       return (
         <span
           key={i}
           className={[
             styles.char,
-            mounted && started ? styles.charVisible : "",
-            isGradient ? styles.gradientChar : "",
+            isActive ? styles.charVisible : styles.charHidden,
+            isActive && isGradient ? styles.gradientChar : "",
+            isActive && isHighlight ? styles.highlightChar : "",
           ]
             .filter(Boolean)
             .join(" ")}
-          style={{ animationDelay: `${delay}ms` }}
+          style={
+            isHighlight
+              ? ({ "--reveal-delay": `${delay}ms` } as React.CSSProperties)
+              : { animationDelay: `${delay}ms` }
+          }
           aria-hidden="true"
         >
           {char}
@@ -59,9 +71,13 @@ export default function Hero() {
     return words.map((word) => {
       const wordOffset = charOffset;
       charOffset += word.length + 1;
+      const isHighlight = HIGHLIGHT_WORDS.has(word);
       return (
-        <span key={word} className={styles.wordGroup}>
-          {renderWord(word, wordOffset, GRADIENT_WORDS.has(word))}
+        <span
+          key={word}
+          className={`${styles.wordGroup}${isHighlight ? ` ${styles.highlightWord}` : ""}`}
+        >
+          {renderWord(word, wordOffset, GRADIENT_WORDS.has(word), isHighlight)}
         </span>
       );
     });
@@ -77,10 +93,10 @@ export default function Hero() {
 
       <div className={`container ${styles.inner}`}>
 
-        {/* Badge — NAAC angle */}
+        {/* Badge — stage */}
         <div className={`${styles.badge} ${mounted && done ? styles.revealFadeUp : styles.hidden}`}>
           <span className={styles.badgeDot} />
-          NAAC Criteria 2 · 5 · 6 · 7 Ready
+          Prototype stage : Launching soon
         </div>
 
         {/* Main headline — letter by letter */}

@@ -5,19 +5,22 @@ const steps = [
     step: "01",
     title: "Professor taps \"Start Attendance\"",
     description:
-      "On the nexalaya app, the professor selects the subject and taps once. The IoT module plugged into the classroom instantly activates a secure local network — no internet, no delay.",
+      "One tap on the nexalaya app activates the IoT module — no internet, no delay.",
+    image: "/images/step1.png",
   },
   {
     step: "02",
     title: "Face scan appears only in-range",
     description:
-      "The facial recognition prompt appears only on the app of students physically inside the classroom. Students outside the range cannot mark attendance — proxy is structurally impossible.",
+      "The facial recognition prompt appears only for students physically inside the classroom.",
+    image: "/images/step2.png",
   },
   {
     step: "03",
     title: "Done in 10 seconds. Synced everywhere.",
     description:
-      "Every verified face is marked instantly. The professor's dashboard updates live. Reports are generated automatically for the administration — zero paperwork, zero manual entry.",
+      "Every verified face is marked instantly. Reports are generated automatically — zero paperwork.",
+    image: "/images/step3.png",
   },
 ];
 
@@ -29,8 +32,8 @@ export default function HowItWorks() {
         <div className={styles.header}>
           <span className={styles.eyebrow}>How It Works</span>
           <h2 className={styles.title}>
-            Three taps.<br />
-            <span className={styles.accent}>Ten seconds.</span>
+            Three taps<br />
+            <span className={styles.accent}>Ten seconds</span>
           </h2>
           <p className={styles.subtitle}>
             No complex setup. No dedicated hardware room. The IoT module plugs
@@ -42,12 +45,27 @@ export default function HowItWorks() {
         <div className={styles.steps}>
           {steps.map((s, i) => (
             <div key={s.step} className={styles.stepCard}>
-              <div className={styles.stepNumber}>{s.step}</div>
-              {i < steps.length - 1 && (
-                <div className={styles.connector} aria-hidden="true" />
-              )}
-              <h3 className={styles.stepTitle}>{s.title}</h3>
-              <p className={styles.stepDesc}>{s.description}</p>
+              {/* Image area */}
+              <div className={styles.stepImageWrap}>
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className={styles.stepImage}
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Text content */}
+              <div className={styles.stepBody}>
+                <div className={styles.stepNumberRow}>
+                  <span className={styles.stepNumber}>{s.step}</span>
+                  {i < steps.length - 1 && (
+                    <div className={styles.connector} aria-hidden="true" />
+                  )}
+                </div>
+                <h3 className={styles.stepTitle}>{s.title}</h3>
+                <p className={styles.stepDesc}>{s.description}</p>
+              </div>
             </div>
           ))}
         </div>

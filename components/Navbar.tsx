@@ -14,14 +14,15 @@ export default function Navbar() {
 
         {/* Links */}
         <ul className={styles.links}>
-          <li><a href="#about" className={styles.link}>About</a></li>
-          <li><a href="#features" className={styles.link}>Features</a></li>
+          <li><a href="#about" className={styles.link}>Home</a></li>
           <li><a href="#how-it-works" className={styles.link}>How it works</a></li>
+          <li><a href="#features" className={styles.link}>Features</a></li>
+          <li><a href="#impact" className={styles.link}>Impact</a></li>
         </ul>
 
         {/* CTA */}
         <a href="#notify" className={styles.ctaBtn}>
-          Get Early Access
+          Book a Campus Demo
         </a>
       </nav>
     </header>

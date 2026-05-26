@@ -24,7 +24,7 @@ export default function NotifySection() {
             <span className={styles.eyebrow}>Launching Soon</span>
             <h2 className={styles.title}>
               Bring <span className={styles.brandN}>n</span>exalaya<br />
-              to your campus.
+              to your campus
             </h2>
             <p className={styles.subtitle}>
               Book a live demo for your institution or join the waitlist for
