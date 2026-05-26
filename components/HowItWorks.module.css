@@ -161,3 +161,39 @@
   color: #4a6680;
   line-height: 1.7;
 }
+
+/* ── Phone ───────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .stepBody {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .stepTitle {
+    font-size: 0.95rem;
+  }
+
+  .stepDesc {
+    font-size: 0.85rem;
+  }
+
+  .stepImageWrap {
+    aspect-ratio: 16 / 10;
+  }
+}

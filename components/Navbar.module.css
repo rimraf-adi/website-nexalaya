@@ -88,8 +88,119 @@
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
-/* Mobile: hide links */
-@media (max-width: 640px) {
+/* ── Hamburger button (hidden on desktop) ────────────────────── */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 110;
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--gray-700);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* Burger → X animation */
+.burgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer (hidden on desktop) ───────────────────────── */
+.drawer {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(240, 248, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(198, 217, 245, 0.4);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 1.5rem;
+}
+
+.drawerOpen {
+  max-height: 400px;
+  padding: 0.75rem 1.5rem 1.25rem;
+}
+
+.drawerLink {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: none;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid rgba(198, 217, 245, 0.35);
+  transition: var(--transition);
+}
+
+.drawerLink:last-of-type {
+  border-bottom: none;
+}
+
+.drawerLink:hover,
+.drawerLink:active {
+  color: var(--blue-600);
+}
+
+.drawerCta {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  padding: 0.7rem 1.25rem;
+  margin-top: 0.5rem;
+  background: var(--gradient-cta);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+  transition: var(--transition);
+}
+
+.drawerCta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ── Mobile breakpoint ───────────────────────────────────────── */
+@media (max-width: 768px) {
   .links { display: none; }
   .ctaBtn { display: none; }
+  .burger { display: flex; }
+  .drawer { display: flex; }
+
+  .nav {
+    padding: 0 1.25rem;
+    height: 56px;
+  }
+
+  .logoText {
+    font-size: 1.5rem;
+  }
 }
