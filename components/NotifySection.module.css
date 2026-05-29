@@ -69,13 +69,21 @@
 /* Form */
 .form {
   display: flex;
-  gap: 8px;
-  max-width: 420px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 480px;
   margin: 0 auto 1rem;
 }
 
+.inputRow {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
 @media (max-width: 500px) {
-  .form { flex-direction: column; }
+  .inputRow { flex-direction: column; }
 }
 
 .input {

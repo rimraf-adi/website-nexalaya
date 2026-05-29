@@ -5,6 +5,7 @@ import styles from "./NotifySection.module.css";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 export default function NotifySection() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ export default function NotifySection() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email) return;
+    if (!name || !email) return;
 
     setLoading(true);
     setError("");
@@ -21,7 +22,7 @@ export default function NotifySection() {
       const res = await fetch("/api/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ name, email }),
       });
 
       if (!res.ok) {
@@ -57,15 +58,26 @@ export default function NotifySection() {
 
               {!submitted ? (
                 <form onSubmit={handleSubmit} className={styles.form} id="notify-form">
-                  <input
-                    id="notify-email"
-                    type="email"
-                    placeholder="Enter your college email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className={styles.input}
-                  />
+                  <div className={styles.inputRow}>
+                    <input
+                      id="notify-name"
+                      type="text"
+                      placeholder="Your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      className={styles.input}
+                    />
+                    <input
+                      id="notify-email"
+                      type="email"
+                      placeholder="Enter your college email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className={styles.input}
+                    />
+                  </div>
                   <button type="submit" className={styles.btn} id="notify-submit-btn" disabled={loading}>
                     {loading ? "Sending..." : "Book a Demo"}
                   </button>
@@ -75,7 +87,7 @@ export default function NotifySection() {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M20 6L9 17l-5-5"/>
                   </svg>
-                  <span>We've sent a confirmation to your email. We'll be in touch soon.</span>
+                  <span>We&apos;ve sent a confirmation to your email. We&apos;ll be in touch soon.</span>
                 </div>
               )}
 
