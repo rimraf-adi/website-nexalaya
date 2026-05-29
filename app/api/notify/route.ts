@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 
 /**
- * Append a row to the Google Sheet with [Name, Email, Timestamp].
+ * Append a row to the Google Sheet with [Name, Email, Timestamp]
  */
 async function appendToSheet(name: string, email: string) {
   const privateKey = (process.env.GOOGLE_PRIVATE_KEY || "").replace(/\\n/g, "\n");
