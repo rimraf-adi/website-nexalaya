@@ -5,9 +5,9 @@ import fs from "fs";
 import path from "path";
 
 /**
- * Append a row to the Google Sheet with [Name, Email, Organization, Timestamp]
+ * Append a row to the Google Sheet with [Email, Organization, Timestamp]
  */
-async function appendToSheet(name: string, email: string, org: string) {
+async function appendToSheet(email: string, org: string) {
   const base64Key = process.env.GOOGLE_SERVICE_ACCOUNT_BASE64;
   const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
 
@@ -37,28 +37,25 @@ async function appendToSheet(name: string, email: string, org: string) {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: "Sheet1!A:D",
+    range: "Sheet1!A:C",
     valueInputOption: "USER_ENTERED",
     requestBody: {
-      values: [[name, email, org, timestamp]],
+      values: [[email, org, timestamp]],
     },
   });
 }
 
 export async function POST(request: Request) {
   try {
-    const { name, email, org } = await request.json();
+    const { email, org } = await request.json();
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
-    if (!name) {
-      return NextResponse.json({ error: "Name is required" }, { status: 400 });
-    }
 
     // 1. Log to Google Sheets
     try {
-      await appendToSheet(name, email, org || "");
+      await appendToSheet(email, org || "");
     } catch (sheetError) {
       // Don't block the email send if Sheets fails
       console.error("Failed to log to Google Sheets:", sheetError);
@@ -76,7 +73,6 @@ export async function POST(request: Request) {
     // Read the HTML template and inject the user's name
     const templatePath = path.join(process.cwd(), "template.html");
     let htmlTemplate = fs.readFileSync(templatePath, "utf-8");
-    htmlTemplate = htmlTemplate.replace(/\{\{NAME\}\}/g, name);
 
     await transporter.sendMail({
       from: '"nexalaya Team" <info.nexalaya@gmail.com>',

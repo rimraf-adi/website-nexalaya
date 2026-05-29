@@ -5,7 +5,6 @@ import styles from "./NotifySection.module.css";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 export default function NotifySection() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [org, setOrg] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -14,7 +13,7 @@ export default function NotifySection() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name || !email || !org) return;
+    if (!email || !org) return;
 
     setLoading(true);
     setError("");
@@ -23,7 +22,7 @@ export default function NotifySection() {
       const res = await fetch("/api/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, org }),
+        body: JSON.stringify({ email, org }),
       });
 
       if (!res.ok) {
@@ -61,33 +60,24 @@ export default function NotifySection() {
                 <form onSubmit={handleSubmit} className={styles.form} id="notify-form">
                   <div className={styles.inputRow}>
                     <input
-                      id="notify-name"
-                      type="text"
-                      placeholder="Your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      className={styles.input}
-                    />
-                    <input
                       id="notify-email"
                       type="email"
-                      placeholder="Enter your college email"
+                      placeholder="College email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       className={styles.input}
                     />
+                    <input
+                      id="notify-org"
+                      type="text"
+                      placeholder="College / Org name"
+                      value={org}
+                      onChange={(e) => setOrg(e.target.value)}
+                      required
+                      className={styles.input}
+                    />
                   </div>
-                  <input
-                    id="notify-org"
-                    type="text"
-                    placeholder="College / Organization name"
-                    value={org}
-                    onChange={(e) => setOrg(e.target.value)}
-                    required
-                    className={styles.input}
-                  />
                   <button type="submit" className={styles.btn} id="notify-submit-btn" disabled={loading}>
                     {loading ? "Sending..." : "Book a Demo"}
                   </button>
