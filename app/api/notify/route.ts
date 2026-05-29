@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 
 /**
- * Append a row to the Google Sheet with [Email, Organization, Timestamp]
+ * Append a row to the Google Sheet with [Email, Organization, Date, Time]
  */
 async function appendToSheet(email: string, org: string) {
   const base64Key = process.env.GOOGLE_SERVICE_ACCOUNT_BASE64;
@@ -29,18 +29,22 @@ async function appendToSheet(email: string, org: string) {
 
   const sheets = google.sheets({ version: "v4", auth });
 
-  const timestamp = new Date().toLocaleString("en-IN", {
+  const now = new Date();
+  const date = now.toLocaleDateString("en-IN", {
     timeZone: "Asia/Kolkata",
     dateStyle: "medium",
+  });
+  const time = now.toLocaleTimeString("en-IN", {
+    timeZone: "Asia/Kolkata",
     timeStyle: "short",
   });
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: "Sheet1!A:C",
+    range: "Sheet1!A:D",
     valueInputOption: "USER_ENTERED",
     requestBody: {
-      values: [[email, org, timestamp]],
+      values: [[email, org, date, time]],
     },
   });
 }
