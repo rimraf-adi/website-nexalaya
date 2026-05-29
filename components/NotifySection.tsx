@@ -7,13 +7,14 @@ import AnimateOnScroll from "./AnimateOnScroll";
 export default function NotifySection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [org, setOrg] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name || !email) return;
+    if (!name || !email || !org) return;
 
     setLoading(true);
     setError("");
@@ -22,7 +23,7 @@ export default function NotifySection() {
       const res = await fetch("/api/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, org }),
       });
 
       if (!res.ok) {
@@ -78,6 +79,15 @@ export default function NotifySection() {
                       className={styles.input}
                     />
                   </div>
+                  <input
+                    id="notify-org"
+                    type="text"
+                    placeholder="College / Organization name"
+                    value={org}
+                    onChange={(e) => setOrg(e.target.value)}
+                    required
+                    className={styles.input}
+                  />
                   <button type="submit" className={styles.btn} id="notify-submit-btn" disabled={loading}>
                     {loading ? "Sending..." : "Book a Demo"}
                   </button>

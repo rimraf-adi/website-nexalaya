@@ -5,9 +5,9 @@ import fs from "fs";
 import path from "path";
 
 /**
- * Append a row to the Google Sheet with [Name, Email, Timestamp]
+ * Append a row to the Google Sheet with [Name, Email, Organization, Timestamp]
  */
-async function appendToSheet(name: string, email: string) {
+async function appendToSheet(name: string, email: string, org: string) {
   const base64Key = process.env.GOOGLE_SERVICE_ACCOUNT_BASE64;
   const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
 
@@ -37,17 +37,17 @@ async function appendToSheet(name: string, email: string) {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: "Sheet1!A:C",
+    range: "Sheet1!A:D",
     valueInputOption: "USER_ENTERED",
     requestBody: {
-      values: [[name, email, timestamp]],
+      values: [[name, email, org, timestamp]],
     },
   });
 }
 
 export async function POST(request: Request) {
   try {
-    const { name, email } = await request.json();
+    const { name, email, org } = await request.json();
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 
     // 1. Log to Google Sheets
     try {
-      await appendToSheet(name, email);
+      await appendToSheet(name, email, org || "");
     } catch (sheetError) {
       // Don't block the email send if Sheets fails
       console.error("Failed to log to Google Sheets:", sheetError);
