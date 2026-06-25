@@ -82,14 +82,19 @@ export default function Navbar() {
 
       {open && (
         <div style={{ background: "#FAFAFA", borderBottom: "1px solid #E5E7EB", padding: "1rem 1.5rem 1.5rem" }}>
-          {["Home", "How it works", "Features", "Impact"].map((label) => (
+          {[
+            { label: "Home", href: "#about" },
+            { label: "How it works", href: "#how-it-works" },
+            { label: "Features", href: "#features" },
+            { label: "Impact", href: "#impact" },
+          ].map((l) => (
             <a
-              key={label}
-              href={`#${label.toLowerCase().replace(/ /g, "-")}`}
+              key={l.label}
+              href={l.href}
               onClick={close}
               style={{ display: "block", padding: "0.75rem 0", fontWeight: 500, color: "#111827", borderBottom: "1px solid #E5E7EB" }}
             >
-              {label}
+              {l.label}
             </a>
           ))}
           <a

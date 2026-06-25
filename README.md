@@ -1,8 +1,8 @@
-# Nexalaya Frontend
+# Nexalaya Landing Page
 
 Nexalaya is a proxy-proof, IoT-powered attendance system built for Indian colleges. It allows professors to take attendance in 10 seconds via a local network module, eliminating proxy fraud and automatically generating NAAC-ready reports.
 
-This repository contains the frontend landing page and demo-request system.
+This repository contains the frontend landing page, built using Next.js, and the demo-request system.
 
 ## Tech Stack
 
@@ -11,16 +11,20 @@ This repository contains the frontend landing page and demo-request system.
 - **Typography:** Outfit (Display) & Inter (Body) via Google Fonts
 - **Backend APIs:** Next.js Route Handlers
 - **Email Delivery:** Nodemailer
+- **Media Delivery & Storage:** Vercel Blob CDN for ultra-fast, optimized images
 
 ## Environment Variables
 
-To run the "Book a Demo" email feature locally, you must provide a Gmail App Password. Create a `.env.local` file in the root directory:
+To run the full feature set locally, create a `.env.local` file in the root directory:
 
 ```env
+# Gmail App Password for sending demo request confirmations
 EMAIL_APP_PASSWORD=your_gmail_app_password_here
-```
 
-*Note: You must generate this password from your Google Account Security settings. Standard passwords will not work.*
+# Vercel Blob credentials for image assets
+BLOB_STORE_ID=store_zMi2SVDOI5uASiYi
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_zMi2SVDOI5uASiYi_sgyKC9g9wSFYa1GMnUcxguiZWMl1Cb
+```
 
 ## Getting Started
 
@@ -40,8 +44,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project Structure
 
-- `app/` - Next.js App Router pages and API routes (`/api/notify`).
-- `components/` - React components (`Hero`, `Features`, `NotifySection`, etc.) and their CSS modules.
-- `public/` - Static assets and images.
-- `template.html` - The HTML email template used by Nodemailer to send demo confirmations.
-- `globals.css` - Global design tokens, font imports, and base animations.
+- `app/` - Next.js App Router pages, sitemaps, favicons, robots rules, and API routes (`/api/notify`).
+- `components/` - Highly structured React components (`Navbar`, `Hero`, `HowItWorks`, `Features`, `Impact`, `NotifySection`, `Footer`) and their custom CSS modules.
+- `public/` - Static assets and local images.
+- `template.html` - The HTML email template used by Nodemailer to send clean, styled demo confirmations.
+- `globals.css` - Global design tokens, primary royal blue color palette (`#2F54FF`), font imports, and base animations.
