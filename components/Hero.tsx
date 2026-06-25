@@ -148,7 +148,7 @@ export default function Hero() {
             }}
           >
             <img
-              src="/ux/WhatsApp Image 2026-06-24 at 21.26.11.jpeg"
+              src="https://zmi2svdoi5uasiyi.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-24%20at%2021.26.11.jpeg"
               alt="Professor Dashboard"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
