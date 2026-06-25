@@ -122,7 +122,7 @@ export default function HowItWorks() {
                     <h3 className="bento-title">Face scan appears only in-range</h3>
                   </div>
                   <p className="bento-desc">
-                    The <strong>facial recognition</strong> prompt appears only for students physically <strong>inside the classroom</strong>.
+                    The <strong style={{ color: "#2F54FF", fontWeight: 600 }}>facial recognition</strong> prompt appears only for students physically <strong style={{ color: "#2F54FF", fontWeight: 600 }}>inside the classroom</strong>.
                   </p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ export default function HowItWorks() {
                     <h3 className="bento-title">Done in 10 seconds. Synced everywhere.</h3>
                   </div>
                   <p className="bento-desc">
-                    Every verified face is marked instantly. Reports are generated automatically — <strong>zero paperwork</strong>.
+                    Every verified face is marked instantly. Reports are generated automatically — <strong style={{ color: "#2F54FF", fontWeight: 600 }}>zero paperwork</strong>.
                   </p>
                 </div>
               </div>
@@ -161,6 +161,12 @@ export default function HowItWorks() {
           grid-template-columns: repeat(3, 1fr);
           gap: 24px;
           margin-top: 48px;
+        }
+
+        .bento-grid > div {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
 
         .bento-card {
@@ -181,9 +187,9 @@ export default function HowItWorks() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: space-between;
+          justify-content: flex-start;
           padding: 32px 24px;
-          gap: 28px;
+          gap: 24px;
           text-align: center;
           height: 100%;
         }
