@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Nexalaya",
     images: [
       {
-        url: "/ux/WhatsApp Image 2026-06-24 at 21.26.11.jpeg",
+        url: "https://zmi2svdoi5uasiyi.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-24%20at%2021.26.11.jpeg",
         width: 720,
         height: 1600,
         alt: "Nexalaya IoT Attendance app interface",
@@ -51,12 +51,12 @@ export const metadata: Metadata = {
     title: "Nexalaya — Attendance in 10 Seconds. Zero Proxies. Full Control.",
     description:
       "IoT-powered, proxy-proof attendance built for Indian colleges. NAAC Criteria 2, 5, 6, 7 ready.",
-    images: ["/ux/WhatsApp Image 2026-06-24 at 21.26.11.jpeg"],
+    images: ["https://zmi2svdoi5uasiyi.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-24%20at%2021.26.11.jpeg"],
   },
 };
 
 export const viewport = {
-  themeColor: "#4F46E5",
+  themeColor: "#2F54FF",
   width: "device-width",
   initialScale: 1,
 };
