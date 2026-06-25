@@ -53,31 +53,34 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a
-          href="#notify"
-          className="hidden-mobile"
-          style={{
-            background: "#2F54FF",
-            color: "#fff",
-            fontSize: "0.8125rem",
-            fontWeight: 600,
-            padding: "0.5rem 1.25rem",
-            borderRadius: 999,
-          }}
-        >
-          Book a Campus Demo
-        </a>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <a
+            href="#notify"
+            className="navbar-cta-btn"
+            style={{
+              background: "#2F54FF",
+              color: "#fff",
+              fontSize: "0.8125rem",
+              fontWeight: 600,
+              padding: "0.5rem 1.25rem",
+              borderRadius: 999,
+              textDecoration: "none",
+            }}
+          >
+            Book a Campus Demo
+          </a>
 
-        <button
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          className="show-mobile"
-          style={{ background: "none", border: "none", cursor: "pointer", display: "none" }}
-        >
-          <svg width="24" height="24" stroke="#111827" strokeWidth="2">
-            {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
-          </svg>
-        </button>
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            className="show-mobile"
+            style={{ background: "none", border: "none", cursor: "pointer", display: "none" }}
+          >
+            <svg width="24" height="24" stroke="#111827" strokeWidth="2">
+              {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -111,6 +114,12 @@ export default function Navbar() {
         @media (max-width: 768px) {
           .hidden-mobile { display: none !important; }
           .show-mobile { display: flex !important; }
+        }
+        @media (max-width: 480px) {
+          .navbar-cta-btn {
+            font-size: 0.75rem !important;
+            padding: 0.4rem 0.85rem !important;
+          }
         }
       `}</style>
     </header>
